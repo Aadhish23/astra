@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Bell, LogOut, Settings, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,31 +13,8 @@ import { authService } from '@/services/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const Topbar = () => {
-  const [timeLeft, setTimeLeft] = useState(0);
   const navigate = useNavigate();
   const user = authService.getUser();
-
-  useEffect(() => {
-    const updateTimer = () => {
-      const remaining = authService.getTimeUntilExpiry();
-      setTimeLeft(remaining);
-      
-      if (remaining <= 0 && authService.isAuthenticated()) {
-        authService.logout();
-        navigate('/login');
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, [navigate]);
-
-  const formatTime = (ms: number) => {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = Math.floor((ms % 60000) / 1000);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
 
   const handleLogout = () => {
     authService.logout();
@@ -50,13 +26,8 @@ export const Topbar = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-            Lovable Admin
+            Admin
           </h1>
-          {timeLeft > 0 && (
-            <Badge variant="outline" className="animate-pulse-glow">
-              Session: {formatTime(timeLeft)}
-            </Badge>
-          )}
         </div>
 
         <div className="flex items-center space-x-4">
