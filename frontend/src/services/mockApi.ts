@@ -59,7 +59,7 @@ class MockApiService {
   async login(email: string, password: string) {
     await this.simulateLatency();
     
-    if (email === 'admin@lovable.dev' && password === 'admin123') {
+    if (email === 'admin@gmail.com' && password === 'admin123') {
       const user = { id: '1', email, name: 'Admin User', role: 'Administrator' };
       this.currentUser = user;
       this.addAuditLog('Login', user.name, 'Successful admin login');

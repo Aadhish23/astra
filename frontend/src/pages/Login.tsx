@@ -69,7 +69,7 @@ const GoogleSignInButton = () => {
 };
 
 export const Login = () => {
-  const [email, setEmail] = useState('admin@lovable.dev');
+  const [email, setEmail] = useState('admin@gmail.com');
   const [password, setPassword] = useState('admin123');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
