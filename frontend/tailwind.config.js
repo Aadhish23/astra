@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
@@ -123,13 +122,5 @@ export default {
       },
     },
   },
-  plugins: [
-    function({ addUtilities }: { addUtilities: any }) {
-      addUtilities({
-        '.animate-pulse-glow': {
-          animation: 'pulse-glow 2s ease-in-out infinite',
-        },
-      });
-    },
-  ],
-} satisfies Config;
+  plugins: [require("tailwindcss-animate")],
+};
